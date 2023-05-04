@@ -18,6 +18,12 @@ st.set_page_config(
 st.title("Earth-OSM")
 st.subheader("Extract and Visualize Power Infrastructure data from OpenStreetMap")
 
+# add under development in red
+st.markdown(
+    f'<p style="color:red;">Under development</p>',
+    unsafe_allow_html=True,
+)
+
 #%%
 deta = Deta(st.secrets["data_key"])
 drive = deta.Drive("earth")
@@ -77,4 +83,13 @@ st.download_button(
     label="Download data as CSV",
     data=df.to_csv().encode("utf-8"),
     file_name="DE_tower.csv",
+)
+
+
+# add powered by earth-osm hyperlink with github icon
+earth_osm_url = "https://github.com/pypsa-meets-earth/earth-osm"
+st.markdown(
+    f'<a href="{earth_osm_url}"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="30"></a>'
+    f'<a href="{earth_osm_url}">Powered by earth-osm</a>',
+    unsafe_allow_html=True,
 )
